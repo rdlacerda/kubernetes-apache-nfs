@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-httpd
+spec:
+  storageClassName: manual
+  volumeMode: Filesystem
+  accessModes:
+    - ReadOnlyMany
+  persistentVolumeReclaimPolicy: Recycle
+  capacity:
+    storage: 30Mi
+  mountOptions:
+  - nfsvers=3
+
+  nfs:
+    server: 192.168.1.121
+    path: /srv/ssharea/kubernetes/httpd/public_html
+    readOnly: true
